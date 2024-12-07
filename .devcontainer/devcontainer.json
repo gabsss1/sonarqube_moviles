@@ -1,0 +1,23 @@
+{
+    "name": "SonarQube Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/python:3.9",
+    "features": {
+      "docker-in-docker": "latest"
+    },
+    "postCreateCommand": [
+      "sudo apt-get update",
+      "sudo apt-get install -y docker.io docker-compose",
+      "curl -s https://ngrok.com/download | tar -xz && sudo mv ngrok /usr/local/bin",
+      "docker-compose up -d"
+    ],
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.shell.linux": "/bin/bash"
+        }
+      }
+    },
+    "mounts": [
+      "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ]
+  }  
